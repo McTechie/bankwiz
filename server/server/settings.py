@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-$u%m5%xly+ychi=cq*dedy!nf_pyhr$ry^*81e$wt(czr#^d)z"
+SECRET_KEY = "django-insecure-e6v4_$ql+0*i!q57a-cu7m)#x_r+z6b#a+x!qa9-h5l_9*6+6%"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
+    "rest_framework",
+    "sandbox_api",
 ]
 
 MIDDLEWARE = [
@@ -47,7 +56,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "server.urls"
 
@@ -75,8 +87,13 @@ WSGI_APPLICATION = "server.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("PGDATABASE", default=""),
+        "USER": env("PGUSER", default=""),
+        "PASSWORD": env("PGPASSWORD", default=""),
+        "HOST": env("PGHOST", default=""),
+        "PORT": env("PGPORT", default=""),
     }
 }
 
