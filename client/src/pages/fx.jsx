@@ -30,7 +30,7 @@ const Foreign = () => {
 
   const handleClick = (currency) => {
     setSelectedCurrency(currency)
-    alert('Add to watchlist')
+    confirm('Add to watchlist')
     setWatchList(watchList => [...watchList, currency])
   }
   console.log(watchList)
@@ -48,23 +48,21 @@ const Foreign = () => {
         </select>
       </div>
 
-
       {/* details of all currencies */}
       <div className='grid grid-cols-2 gap-x-10'>
         <div>
-          <table class='border-sky-400 text-center w-full'>
-            <thead>
-              <tr>
-                <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-sky-400 rounded-tl rounded-bl'>Currency</th>
-                <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-sky-400'>Rate</th>
-                <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-sky-400'></th>
+          <table class='flex flex-col border p-6 border-sky-400 text-center h-[40rem]'>
+            <thead className='text-center'>
+              <tr className=''>
+                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-sky-400'>Currency</th>
+                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-sky-400'>Rate</th>
               </tr>
             </thead>
-            <tbody className='overflow-y-scroll'>
+            <tbody className='flex-1 overflow-y-scroll'>
               {allCurrenciesArr.map(currency => (
                 <tr onClick={() => handleClick(currency)} className='hover:bg-gray-300 cursor-pointer'>
-                  <td class='px-4 py-3'>{currency}</td>
-                  <td class='px-4 py-3'>{conversionRates[currency]}</td>
+                  <td class='px-4 py-3 w-full'>{currency}</td>
+                  <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                   {/* <td class='px-10 py-3 '>{time}</td> */}
                   <td class='px-4 py-3'><PlusCircleIcon className='h-5 w-5' /></td>
                 </tr>
@@ -73,23 +71,25 @@ const Foreign = () => {
           </table>
         </div>
 
-        <div className='flex flex-col space-y-20'>
+        <div className='flex flex-col space-y-10'>
           <div className=''>
-            <h1 className='text-2xl font-semibold  mb-6'>My Watch List</h1>
+            <h1 className='text-2xl font-semibold mb-6'>My Watch List</h1>
             <div>
-              <table class='border-sky-400 w-1/2 text-center overflow-auto whitespace-no-wrap'>
-                <thead>
-                  <tr>
-                    <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl'>Currency</th>
-                    <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100'>Rate</th>
+              <table class='border p-4 border-sky-400 w-1/2 flex flex-col h-[15rem] text-center overflow-auto whitespace-no-wrap'>
+                <thead className='content-center'>
+                  <tr className='bg-sky-400'>
+                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Currency</th>
+                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Rate</th>
                   </tr>
                 </thead>
-                <tbody className='overflow-y-scroll'>
-                  {watchList.map(currency => (
-                    <tr className='' >
-                      <td class='px-4 py-3'>{currency}</td>
-                      <td class='px-4 py-3'>{conversionRates[currency]}</td>
-                    </tr>))}
+                <tbody className='flex-1 overflow-y-scroll'>
+                  {watchList.length > 0 ? watchList.map(currency => (
+                    <tr className='hover:bg-gray-300'>
+                      <td class='px-4 py-3 w-full'>{currency}</td>
+                      <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
+                    </tr>)) :
+                    <div className='mx-auto mt-10 text-lg'>Add items to  your watchlist</div>
+                  }
                 </tbody>
               </table>
             </div>
@@ -98,18 +98,18 @@ const Foreign = () => {
           <div>
             <h1 className='text-2xl font-semibold mb-6'>Popular Currencies</h1>
             <div>
-              <table class='border-sky-400 w-1/2 text-center overflow-auto whitespace-no-wrap'>
-                <thead>
-                  <tr>
-                    <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl'>Currency</th>
-                    <th class='px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100'>Rate</th>
+              <table class='border p-4 border-sky-400 h-[15rem] flex flex-col w-1/2 text-center overflow-auto whitespace-no-wrap'>
+                <thead className='content-center'>
+                  <tr className='bg-sky-400'>
+                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Currency</th>
+                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Rate</th>
                   </tr>
                 </thead>
-                <tbody className='overflow-x-hidden overflow-y-scroll'>
+                <tbody className='flex-1 overflow-y-scroll'>
                   {popularCurrencies.map(currency => (
-                    <tr className=''>
-                      <td class='px-4 py-3'>{currency}</td>
-                      <td class='px-4 py-3'>{conversionRates[currency]}</td>
+                    <tr className='hover:bg-gray-300'>
+                      <td class='px-4 py-3 w-full'>{currency}</td>
+                      <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                     </tr>))}
                 </tbody>
               </table>
