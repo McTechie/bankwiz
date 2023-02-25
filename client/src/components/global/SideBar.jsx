@@ -6,7 +6,8 @@ import {
   BuildingLibraryIcon,
   CreditCardIcon,
   CurrencyEuroIcon,
-  PresentationChartLineIcon
+  PresentationChartLineIcon,
+  UserIcon
 } from '@heroicons/react/20/solid'
 
 // default imports
@@ -37,6 +38,11 @@ const links = [
     title: 'Organization',
     href: '/organization',
     icon: <BuildingLibraryIcon />
+  },
+  {
+    title: 'My Profile',
+    href: '/profile',
+    icon: <UserIcon />
   }
 ]
 
@@ -67,7 +73,7 @@ const SideBar = () => {
               // To find the currently active sidebar link,
               // check if the current route (irrespective of any sub-routes) is the same as the link href
               (pathname?.split('/')[1] === link.href.split('/')[1]) && 'nav-link-active'
-            }`}>
+              }`}>
               <div className='w-5 h-5'>
                 {link.icon}
               </div>
@@ -79,7 +85,7 @@ const SideBar = () => {
         ))}
 
       </div>
-      
+
       <button className='nav-link'>
         <ArrowRightOnRectangleIcon className='w-5 h-5' />
         <p className='ml-2'>
