@@ -6,7 +6,7 @@ from django.urls import path
 def exception_catcher(func):
     def runner(*args):
         try:
-            func(*args)
+            return func(*args)
         except Exception as e:
             return Response(
                 {"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR

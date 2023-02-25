@@ -120,3 +120,5 @@ def singular_operation(model, serializer):
             return Response(
                 {"message": f"Object with id {id} deleted"}, status=status.HTTP_200_OK
             )
+
+    return ObjectDetail
