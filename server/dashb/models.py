@@ -30,6 +30,7 @@ class Bank(models.Model):
     hqlocation = models.CharField(max_length=500, blank=True, null=True)
     added = models.DateTimeField(auto_now_add=True)  # when was the bank associated with the EndUser.
 
+
     def __str__(self):
         return str(self.bankid)
 
