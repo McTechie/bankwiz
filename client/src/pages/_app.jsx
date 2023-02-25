@@ -1,4 +1,5 @@
 // named imports
+import { usePathname } from 'next/navigation'
 import { Provider } from 'react-redux'
 import { DashboardLayout } from '../layouts'
 
@@ -9,11 +10,17 @@ import store from '../redux/store'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
+  const pathname = usePathname()
+
   return (
     <Provider store={store}>
-      <DashboardLayout>
+      {pathname === '/login' || pathname === '/register' ? (
         <Component {...pageProps} />
-      </DashboardLayout>
+      ) : (
+        <DashboardLayout>
+          <Component {...pageProps} />
+        </DashboardLayout>
+      )} 
     </Provider>
   )
 }

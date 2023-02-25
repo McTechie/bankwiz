@@ -28,7 +28,7 @@ def get_url_patterns(endpoint, all_view, single_creator_view, single_operations_
     urlpatterns = [
         path(f"{endpoint}s/", all_view.as_view()),
         path(f"{endpoint}/", single_creator_view.as_view()),
-        path(f"{endpoint}/<int:id>", single_operations_view.as_view()),
+        path(f"{endpoint}/<int:{endpoint}_id>", single_operations_view.as_view()),
     ]
 
     return urlpatterns

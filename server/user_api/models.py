@@ -5,16 +5,16 @@ import uuid
 
 # Create your models here.
 class User(models.Model):
-    id = models.AutoField(primary_key=True)
+    user_id = models.AutoField(primary_key=True)
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-    password = models.CharField(max_length=20, blank=False, null=False)
+    password = models.CharField(max_length=99, blank=False, null=False)
     first_name = models.CharField(max_length=50,blank=False)
     last_name = models.CharField(max_length=50, blank=False)
     designation = models.CharField(max_length=100, blank=False)
     email = models.EmailField(max_length=100, blank=True, null=True, unique=True)
-    aadhar = models.CharField(max_length=12, unique=True, blank=True, null=True)
-    pan = models.CharField(max_length=10, unique=True, blank=True, null=True)
+    aadhar = models.CharField(max_length=99, unique=True, blank=True, null=True)
+    pan = models.CharField(max_length=99, unique=True, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.user_id)
