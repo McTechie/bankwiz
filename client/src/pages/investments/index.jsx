@@ -56,7 +56,7 @@ const Stocks = () => {
 
             </tbody>
           </table>
-        </div>
+        </div>  
         <div className='col-span-2 my-4 mx-4 p-2 '>
           <table class='table-auto  border-white w-full ml-8 text-left whitespace-no-wrap'>
             <thead>
