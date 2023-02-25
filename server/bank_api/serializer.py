@@ -1,6 +1,4 @@
 import models
+from utils.general_utils import serializer
 
-class BankUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Bank
-        fields = "__all__"
+BankUserSerializer = serializer(models.Bank)
