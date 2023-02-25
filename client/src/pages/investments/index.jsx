@@ -28,7 +28,6 @@ const Stocks = () => {
     setWatchList(watchList => [...watchList, stock])
     alert('Item added to watchlist')
   }
-  console.log(watchList)
   const router = useRouter()
 
   return (
@@ -67,8 +66,8 @@ const Stocks = () => {
               </tr>
             </thead>
             <tbody>
-              {watchList.length > 0 ? watchList.map(stock => (
-                <tr onClick={router.push(`/investments/${stock.item}`)} className='hover:bg-sky-400'>
+              {watchList.length > 0 ? watchList.map((stock, index) => (
+                <tr key={index} onClick={router.push(`/investments/${stock.item}`)} className='hover:bg-sky-400'>
                   <td class='px-4 py-3 w-full'>{stock.item}</td>
                   <td class='px-4 py-3 w-full'>{stock.c}</td>
                 </tr>)) :

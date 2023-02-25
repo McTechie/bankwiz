@@ -18,7 +18,7 @@ const Transactions = () => {
                 <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Payee</th>
               </thead>
               <tbody className='flex-1 overflow-y-scroll'>
-                {bankStatements.map(statement => (
+                {bankStatements.map((statement, index) => (
                   <tr className='hover:bg-sky-400' key={statement.transaction_id}>
                     <td className='px-8 text-lg'>
                       <p className='font-semibold'>{statement.transaction_date}</p>

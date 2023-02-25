@@ -40,8 +40,8 @@ const Foreign = () => {
       <div className='flex justify-between items-center mx-16 mb-5'>
         <h1 className='text-3xl font-semibold mb-6'>Foreign Exchange</h1>
         <select onChange={(e) => setAlias(e.target.value)} className='p-3 ml-6 border focus:outline-none border-sky-400 rounded-lg' name='' id='' >
-          {conversionRates && Object.keys(conversionRates).map((currency) => (
-            <option className='p-2' key={currency} value={currency}>
+          {conversionRates && Object.keys(conversionRates).map((currency, index) => (
+            <option onClick={index} className='p-2' key={currency} value={currency}>
               {currency}
             </option>
           ))}
@@ -59,8 +59,8 @@ const Foreign = () => {
               </tr>
             </thead>
             <tbody className='flex-1 overflow-y-scroll'>
-              {allCurrenciesArr.map(currency => (
-                <tr onClick={() => handleClick(currency)} className='hover:bg-sky-400 cursor-pointer'>
+              {allCurrenciesArr.map((currency, index) => (
+                <tr key={index} onClick={() => handleClick(currency)} className='hover:bg-sky-400 cursor-pointer'>
                   <td class='px-4 py-3 w-full'>{currency}</td>
                   <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                   {/* <td class='px-10 py-3 '>{time}</td> */}
@@ -83,8 +83,8 @@ const Foreign = () => {
                   </tr>
                 </thead>
                 <tbody className='flex-1 overflow-y-scroll'>
-                  {watchList.length > 0 ? watchList.map(currency => (
-                    <tr className='hover:bg-sky-400'>
+                  {watchList.length > 0 ? watchList.map((currency, index) => (
+                    <tr onClick={index} className='hover:bg-sky-400'>
                       <td class='px-4 py-3 w-full'>{currency}</td>
                       <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                     </tr>)) :
@@ -100,14 +100,14 @@ const Foreign = () => {
             <div>
               <table class='border p-4 border-sky-400 h-[15rem] flex flex-col w-1/2 text-center overflow-auto whitespace-no-wrap'>
                 <thead className='content-center'>
-                  <tr className='bg-gray-300'>
+                  <tr className='bg-gray-400'>
                     <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Currency</th>
                     <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Rate</th>
                   </tr>
                 </thead>
                 <tbody className='flex-1 overflow-y-scroll'>
-                  {popularCurrencies.map(currency => (
-                    <tr className='hover:bg-sky-400'>
+                  {popularCurrencies.map((currency, index) => (
+                    <tr key={index} className='hover:bg-sky-400'>
                       <td class='px-4 py-3 w-full'>{currency}</td>
                       <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                     </tr>))}
