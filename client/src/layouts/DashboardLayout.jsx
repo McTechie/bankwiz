@@ -1,6 +1,6 @@
 // named imports
 import { useEffect } from 'react'
-import { Lato } from '@next/font/google'
+import { Lato } from 'next/font/google'
 import { useDispatch, useSelector } from 'react-redux'
 import { setMode } from '../redux/slices/darkModeSlice'
 import { AppBar, SideBar } from '../components'
