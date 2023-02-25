@@ -55,7 +55,10 @@ def creator(serializer):
             print(request.data)
             serialized = serializer(data=request.data)
             if serialized.is_valid():
+                print('valid')
                 serialized.save()
+            else:
+                print('invalid')
             return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     return CreateObject

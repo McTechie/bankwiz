@@ -5,7 +5,7 @@ import uuid
 
 # Create your models here.
 class User(models.Model):
-    transaction_id = models.AutoField(primary_key=True)
+    user_id = models.AutoField(primary_key=True)
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     password = models.CharField(max_length=20, blank=False, null=False)
     first_name = models.CharField(max_length=50,blank=False)
