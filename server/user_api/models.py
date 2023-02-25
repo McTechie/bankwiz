@@ -1,4 +1,6 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
+from bankwiz.server.company_api.models import Company
 
 # Create your models here.
 class User(models.Model):
