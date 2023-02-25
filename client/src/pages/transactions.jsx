@@ -8,27 +8,27 @@ const Transactions = () => {
         {
           bankStatements.length > 0 &&
           <section className=''>
-            <table className='flex flex-col w-full h-[40rem]'>
-              <thead className='text-xl rounded-lg text-center bg-sky-300'>
-                <th className='px-8 py-6'>Date</th>
-                <th className='px-8 py-6'>Amount</th>
-                <th className='px-8 py-6'>Purpose</th>
-                <th className='px-8 py-6'>Via</th>
-                <th className='px-8 py-6'>Status</th>
-                <th className='px-8 py-6'>Payee</th>
+            <table className='flex flex-col border p-6 border-sky-400 text-center h-[40rem]'>
+              <thead className='rounded-lg text-lg text-center'>
+                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Date</th>
+                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Amount</th>
+                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Purpose</th>
+                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Via</th>
+                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Status</th>
+                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Payee</th>
               </thead>
-              <tbody className='overflow-y-auto'>
+              <tbody className='flex-1 overflow-y-scroll'>
                 {bankStatements.map(statement => (
-                  <tr className='text-center hover:cursor-pointer rounded-lg hover:bg-gray-400' key={statement.transaction_id}>
-                    <td className='px-8 py-3 text-lg'>
+                  <tr className='hover:bg-sky-400' key={statement.transaction_id}>
+                    <td className='px-8 text-lg'>
                       <p className='font-semibold'>{statement.transaction_date}</p>
                       <p className='text-sm text-center'>{statement.transaction_time_stamp}</p>
                     </td>
-                    <td className='px-8 text-lg '>{statement.transaction_amount}</td>
-                    <td className='px-8 text-lg '>{statement.transaction_purpose}</td>
-                    <td className='px-8 text-lg '>{statement.transaction_type}</td>
-                    <td className='px-8 text-lg '>{statement.transaction_status}</td>
-                    <td className='px-8 text-lg '>{statement.transaction_with}</td>
+                    <td className='px-6'>{statement.transaction_amount}</td>
+                    <td className='px-6'>{statement.transaction_purpose}</td>
+                    <td className='px-6'>{statement.transaction_type}</td>
+                    <td className='px-6'>{statement.transaction_status}</td>
+                    <td className='px-6'>{statement.transaction_with}</td>
                   </tr>
                 ))}
               </tbody>

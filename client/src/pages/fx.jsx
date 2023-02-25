@@ -54,13 +54,13 @@ const Foreign = () => {
           <table class='flex flex-col border p-6 border-sky-400 text-center h-[40rem]'>
             <thead className='text-center'>
               <tr className=''>
-                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-sky-400'>Currency</th>
-                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-sky-400'>Rate</th>
+                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-gray-300'>Currency</th>
+                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-gray-300'>Rate</th>
               </tr>
             </thead>
             <tbody className='flex-1 overflow-y-scroll'>
               {allCurrenciesArr.map(currency => (
-                <tr onClick={() => handleClick(currency)} className='hover:bg-gray-300 cursor-pointer'>
+                <tr onClick={() => handleClick(currency)} className='hover:bg-sky-400 cursor-pointer'>
                   <td class='px-4 py-3 w-full'>{currency}</td>
                   <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                   {/* <td class='px-10 py-3 '>{time}</td> */}
@@ -77,14 +77,14 @@ const Foreign = () => {
             <div>
               <table class='border p-4 border-sky-400 w-1/2 flex flex-col h-[15rem] text-center overflow-auto whitespace-no-wrap'>
                 <thead className='content-center'>
-                  <tr className='bg-sky-400'>
+                  <tr className='bg-gray-300'>
                     <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Currency</th>
                     <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Rate</th>
                   </tr>
                 </thead>
                 <tbody className='flex-1 overflow-y-scroll'>
                   {watchList.length > 0 ? watchList.map(currency => (
-                    <tr className='hover:bg-gray-300'>
+                    <tr className='hover:bg-sky-400'>
                       <td class='px-4 py-3 w-full'>{currency}</td>
                       <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                     </tr>)) :
@@ -100,14 +100,14 @@ const Foreign = () => {
             <div>
               <table class='border p-4 border-sky-400 h-[15rem] flex flex-col w-1/2 text-center overflow-auto whitespace-no-wrap'>
                 <thead className='content-center'>
-                  <tr className='bg-sky-400'>
+                  <tr className='bg-gray-300'>
                     <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Currency</th>
                     <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Rate</th>
                   </tr>
                 </thead>
                 <tbody className='flex-1 overflow-y-scroll'>
                   {popularCurrencies.map(currency => (
-                    <tr className='hover:bg-gray-300'>
+                    <tr className='hover:bg-sky-400'>
                       <td class='px-4 py-3 w-full'>{currency}</td>
                       <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
                     </tr>))}
