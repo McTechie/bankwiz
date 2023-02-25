@@ -56,7 +56,7 @@ const Stocks = () => {
             </thead>
             <tbody>
               <tr className='hover:bg-indigo-300 hover:cursor-pointer'>
-                <td class='px-4 py-3'><Link href='/trading'>APPL</Link></td>
+                <td class='px-4 py-3'><Link href='/investments/asd'>APPL</Link></td>
                 <td class='px-4 py-3'>2334</td>
               </tr>
             </tbody>
