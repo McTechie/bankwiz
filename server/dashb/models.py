@@ -47,6 +47,13 @@ class Account(models.Model):
     accountbalance = models.DecimalField()
     creditlimit = models.DecimalField()
 
+class Tracaction(models.Model):
 
-
-
+    transaction_id = models.UUIDField(default=uuid.uuid4, unique=True,
+                              primary_key=True, editable=False)
+    transaction_status = models.CharField(max_length=20, unique=False)  # (Approved, Pending, ...)
+    transaction_type = models.CharField(max_length=20, unique=False)  # (NEFT, RTGS, ...)
+    from_account = models.ForeignKey(Account, blank=False)
+    to_account = models.ForeignKey(Account, blank=False)
+    amount = models.DecimalField()
+    timestamp = models.DateTimeField()
