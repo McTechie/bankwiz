@@ -1,12 +1,7 @@
-from django.urls import path
-from .views import (
-    Banks,
-    SingleBankCreator,
-    SingleBankOperations,
-)
+from .views import Banks as all_view
+from .views import SingleBankCreator as single_creator_view
+from .views import SingleBankOperations as single_operations_view
 
-urlpatterns = [
-    path("banks/", Banks.as_view()),
-    path("bank/", SingleBankCreator.as_view()),
-    path("bank/<int:id>", SingleBankOperations.as_view()),
-]
+from utils.general_utils import get_url_patterns
+
+urlpatterns = get_url_patterns('bank', all_view, single_creator_view, single_operations_view)

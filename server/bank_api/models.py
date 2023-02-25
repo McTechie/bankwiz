@@ -3,7 +3,6 @@ import uuid
 
 # Create your models here.
 class Bank(models.Model):
-
     bankid = models.UUIDField(default=uuid.uuid4, unique=True,
                               primary_key=True, editable=False)
     bankname = models.CharField(max_length=500, blank=False)

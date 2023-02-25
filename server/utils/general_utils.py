@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import serializers
+from django.urls import path
 
 def exception_catcher(func):
     def runner(*args):
@@ -22,3 +23,12 @@ def serializer(_model):
 
     return Serializer
 
+
+def get_url_patterns(endpoint, all_view, single_creator_view, single_operations_view):
+    urlpatterns = [
+        path(f"{endpoint}s/", all_view.as_view()),
+        path(f"{endpoint}/", single_creator_view.as_view()),
+        path(f"{endpoint}/<int:id>", single_operations_view.as_view()),
+    ]
+
+    return urlpatterns
