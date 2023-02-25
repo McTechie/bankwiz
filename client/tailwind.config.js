@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,jsx}',
-    './src/components/**/*.{js,jsx}',
-    './src/layouts/**/*.{js,jsx}',
-  ],
+  darkMode: 'class',
+  content: ['./src/**/*.{jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-lato)']
+      }
+    },
   },
   plugins: [],
 }

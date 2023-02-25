@@ -8,7 +8,7 @@ export const darkModeSlice = createSlice({
   name: 'darkMode',
   initialState,
   reducers: {
-    toggle: state => {
+    toggleDarkMode: state => {
       state.isDarkMode = !state.isDarkMode
     },
     setMode: (state, action) => {
@@ -18,6 +18,6 @@ export const darkModeSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { toggle, setMode } = darkModeSlice.actions
+export const { toggleDarkMode, setMode } = darkModeSlice.actions
 
 export default darkModeSlice.reducer
