@@ -27,7 +27,7 @@ class Bank(models.Model):
                               primary_key=True, editable=False)
     bankname = models.CharField(max_length=500, blank=False)
     hqlocation = models.CharField(max_length=500, blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
+    added = models.DateTimeField(auto_now_add=True)  # when was the account created in this bank
 
     def __str__(self):
         return str(self.bankid)
@@ -47,7 +47,7 @@ class Account(models.Model):
     accountbalance = models.DecimalField()
     creditlimit = models.DecimalField()
 
-class Tracaction(models.Model):
+class Transaction(models.Model):
 
     transaction_id = models.UUIDField(default=uuid.uuid4, unique=True,
                               primary_key=True, editable=False)
