@@ -15,7 +15,6 @@ class Account(models.Model):
     compid = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
     branch = models.CharField(max_length=200, blank=False)
     branchcode = models.CharField(max_length=30, blank=False)
-    type = models.CharField(max_length=50, blank=True) # Corporate
     purpose = models.CharField(max_length=50, blank=True, null=True)
     accountbalance = models.DecimalField(max_digits=99, decimal_places=2)
     creditlimit = models.DecimalField(max_digits=99, decimal_places=2)
