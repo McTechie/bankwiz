@@ -2,9 +2,15 @@ from rest_framework import serializers
 import models
 
 
-class EndUserSerializer(serializers.ModelSerializer):
+class CompanySerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.EndUser
+        model = models.Company
+        fields = "__all__"
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
         fields = "__all__"
 
 
