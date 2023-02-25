@@ -30,9 +30,15 @@ const Foreign = () => {
   const handleAddCurrencyToWatchList = (e, currency) => {
     e.stopPropagation()
     
-    setWatchList(watchList => [...watchList, currency])
+    setWatchList(watchList => {
+      if (watchList.includes(currency)) {
+        return watchList
+      } else {
+        return [...watchList, currency]
+      }
+    })
 
-    localStorage.setItem('watchList', JSON.stringify([...watchList, currency]))
+    localStorage.setItem('watchListStocks', JSON.stringify([...watchList, currency]))
   }
 
   const handleRemoveCurrencyFromWatchList = (e, currency) => {
@@ -42,7 +48,7 @@ const Foreign = () => {
 
     setWatchList(newWatchList)
 
-    localStorage.setItem('watchList', JSON.stringify(newWatchList))
+    localStorage.setItem('watchListStocks', JSON.stringify(newWatchList))
   }
 
   useEffect(() => {
