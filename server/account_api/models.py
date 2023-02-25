@@ -1,4 +1,8 @@
 from django.db import models
+import uuid
+from bankwiz.server.bank_api.models import Bank
+from bankwiz.server.company_api.models import Company
+
 
 # Create your models here.
 class Account(models.Model):
