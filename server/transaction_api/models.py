@@ -8,15 +8,15 @@ from account_api.models import Account
 
 # Create your models here.
 class Transaction(models.Model):
-    transaction_id = models.AutoField(primary_key=True)
-    company_id = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
-    bank_id = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=False)
-    account_id = models.ForeignKey(Account, on_delete=models.CASCADE, blank=False)
+    transactionid = models.AutoField(primary_key=True)
+    companyid = models.ForeignKey(Company, on_delete=models.CASCADE)
+    userid = models.ForeignKey(User, on_delete=models.CASCADE)
+    bankid = models.ForeignKey(Bank, on_delete=models.CASCADE)
+    accountid = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=99, decimal_places=2)
-    transaction_status = models.CharField(max_length=20, unique=False)  # (Approved, Pending, Cancelled, Failed ...)
-    transaction_type = models.CharField(max_length=20, unique=False)  # (NEFT, RTGS, ...)
-    transaction_with = models.CharField(max_length=50, blank=False)
+    transactionstatus = models.CharField(max_length=20, unique=False)  # (Approved, Pending, Cancelled, Failed ...)
+    transactiontype = models.CharField(max_length=20, unique=False)  # (NEFT, RTGS, ...)
+    transactionwith = models.CharField(max_length=50, blank=False)
     purpose = models.CharField(max_length=50, blank=True, null=True)
     timestamp = models.DateTimeField()
 
