@@ -1,5 +1,7 @@
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
+
+const FOREIGN_EXCHANGE_API_KEY = '70e28d22944f57e5ba6c3ad4'
 
 const Foreign = () => {
   const [alias, setAlias] = useState('INR')
@@ -7,20 +9,14 @@ const Foreign = () => {
   const [watchList, setWatchList] = useState([])
   const [selectedCurrency, setSelectedCurrency] = useState('')
 
-  var today = new Date();
-  var time = today.getHours() + ':' + today.getMinutes()
-
-  const selectedCurrencies = useMemo(() => Object.keys(conversionRates).filter(currency => ['AED', 'USD'].includes(currency)))
-
   const allCurrenciesArr = Object.keys(conversionRates)
-  const popularCurrencies = useMemo(() => Object.keys(conversionRates).filter(currency => ['USD', 'INR', 'EUR', 'AED'].includes(currency)))
+  const popularCurrencies = Object.keys(conversionRates).filter(currency => ['USD', 'INR', 'EUR', 'AED'].includes(currency))
 
   useEffect(() => {
     const fetchCurrencies = async () => {
-      const response = await fetch(`https://v6.exchangerate-api.com/v6/70e28d22944f57e5ba6c3ad4/latest/${alias}`)
+      const response = await fetch(`https://v6.exchangerate-api.com/v6/${FOREIGN_EXCHANGE_API_KEY}/latest/${alias}`)
 
       const { conversion_rates } = await response.json()
-      // popularCurrencies.push(alias)
 
       setConversionRates(conversion_rates)
     }
@@ -33,84 +29,111 @@ const Foreign = () => {
     confirm('Add to watchlist')
     setWatchList(watchList => [...watchList, currency])
   }
+
   console.log(watchList)
 
   return (
-    <div className=''>
-      <div className='flex justify-between items-center mx-16 mb-5'>
-        <h1 className='text-3xl font-semibold mb-6'>Foreign Exchange</h1>
-        <select onChange={(e) => setAlias(e.target.value)} className='p-3 ml-6 border focus:outline-none border-sky-400 rounded-lg' name='' id='' >
-          {conversionRates && Object.keys(conversionRates).map((currency, index) => (
-            <option onClick={index} className='p-2' key={currency} value={currency}>
-              {currency}
-            </option>
-          ))}
-        </select>
+    <div className='max-w-screen-xl mx-auto'>
+      <div className='flex justify-between items-center mx-10 mb-5'>
+        <h1 className='text-3xl font-semibold'>
+          Forex Rates
+        </h1>
+
+        <div>
+          <label className='text-lg font-semibold'>Select Base Currency:</label>
+          <select
+            id='alias'
+            name='alias'
+            onChange={(e) => setAlias(e.target.value)}
+            className='p-3 ml-6 border focus:outline-none border-sky-400 rounded-lg'
+          >
+            {conversionRates && Object.keys(conversionRates).map((currency, index) => (
+              <option
+                key={currency}
+                value={currency}
+                className='p-2'
+              >
+                {currency}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* details of all currencies */}
-      <div className='grid grid-cols-2 gap-x-10'>
-        <div>
-          <table class='flex flex-col border p-6 border-sky-400 text-center h-[40rem]'>
+      <div className='grid grid-cols-12 gap-x-10 mx-10'>
+        <div className='col-span-8'>
+          <table className='flex flex-col border p-6 border-sky-400 dark:border-indigo-400 rounded-lg text-center h-[20rem]'>
             <thead className='text-center'>
-              <tr className=''>
-                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-gray-300'>Currency</th>
-                <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm bg-gray-300'>Rate</th>
+              <tr className='font-medium text-gray-900 text-sm bg-gray-300'>
+                <th>
+                  Currency
+                </th>
+                <th>
+                  Rate
+                </th>
               </tr>
             </thead>
-            <tbody className='flex-1 overflow-y-scroll'>
-              {allCurrenciesArr.map((currency, index) => (
-                <tr key={index} onClick={() => handleClick(currency)} className='hover:bg-sky-400 cursor-pointer'>
-                  <td class='px-4 py-3 w-full'>{currency}</td>
-                  <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
-                  {/* <td class='px-10 py-3 '>{time}</td> */}
-                  <td class='px-4 py-3'><PlusCircleIcon className='h-5 w-5' /></td>
+            <tbody className='flex-1 overflow-y-auto'>
+              {allCurrenciesArr?.map(currency => (
+                <tr
+                  key={currency}
+                  onClick={() => handleClick(currency)}
+                  className='hover:bg-sky-400 cursor-pointer'
+                >
+                  <td className='px-4 py-3 w-full'>{currency}</td>
+                  <td className='px-4 py-3 w-full'>{conversionRates[currency]}</td>
+                  <td className='px-4 py-3'><PlusCircleIcon className='h-5 w-5' /></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <div className='flex flex-col space-y-10'>
-          <div className=''>
-            <h1 className='text-2xl font-semibold mb-6'>My Watch List</h1>
+        <div className='col-span-4 flex flex-col space-y-10'>
+          <div>
             <div>
-              <table class='border p-4 border-sky-400 w-1/2 flex flex-col h-[15rem] text-center overflow-auto whitespace-no-wrap'>
+              <table className='border p-4 border-sky-400 flex flex-col h-[15rem] text-center overflow-auto'>
                 <thead className='content-center'>
                   <tr className='bg-gray-300'>
-                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Currency</th>
-                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Rate</th>
+                    <th className='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Currency</th>
+                    <th className='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm '>Rate</th>
                   </tr>
                 </thead>
                 <tbody className='flex-1 overflow-y-scroll'>
-                  {watchList.length > 0 ? watchList.map((currency, index) => (
-                    <tr onClick={index} className='hover:bg-sky-400'>
-                      <td class='px-4 py-3 w-full'>{currency}</td>
-                      <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
-                    </tr>)) :
-                    <div className='mx-auto mt-10 text-lg'>Add items to  your watchlist</div>
-                  }
+                  {watchList && watchList?.map(currency => (
+                    <tr
+                      key={currency}
+                      className='hover:bg-sky-400'
+                    >
+                      <td className='px-4 py-3 w-full'>{currency}</td>
+                      <td className='px-4 py-3 w-full'>{conversionRates[currency]}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           </div>
 
           <div>
-            <h1 className='text-2xl font-semibold mb-6'>Popular Currencies</h1>
             <div>
-              <table class='border p-4 border-sky-400 h-[15rem] flex flex-col w-1/2 text-center overflow-auto whitespace-no-wrap'>
+              <table className='border p-4 border-sky-400 dark:border-indigo-400 h-[15rem] rounded-lg flex flex-col text-center overflow-auto'>
                 <thead className='content-center'>
                   <tr className='bg-gray-400'>
-                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Currency</th>
-                    <th class='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Rate</th>
+                    <th className='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Currency</th>
+                    <th className='px-4 w-full py-3 title-font font-medium text-gray-900 text-sm'>Rate</th>
                   </tr>
                 </thead>
                 <tbody className='flex-1 overflow-y-scroll'>
-                  {popularCurrencies.map((currency, index) => (
-                    <tr key={index} className='hover:bg-sky-400'>
-                      <td class='px-4 py-3 w-full'>{currency}</td>
-                      <td class='px-4 py-3 w-full'>{conversionRates[currency]}</td>
-                    </tr>))}
+                  {popularCurrencies?.map((currency, index) => (
+                    <tr
+                      key={index}
+                      className='hover:bg-sky-400'
+                    >
+                      <td className='px-4 py-3 w-full'>{currency}</td>
+                      <td className='px-4 py-3 w-full'>{conversionRates[currency]}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

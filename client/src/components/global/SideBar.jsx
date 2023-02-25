@@ -49,8 +49,8 @@ const links = [
 const SideBar = () => {
   const pathname = usePathname()
 
-  const fullname = 'Mcvean Soans'
-  const role = 'Chief Financial Officer'
+  const fullname = 'Olivia Wilson'
+  const role = 'Financial Controller'
 
   return (
     <aside className='min-h-screen flex flex-col p-4 space-y-20'>
