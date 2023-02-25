@@ -59,6 +59,7 @@ def creator(serializer):
                 serialized.save()
             else:
                 print('invalid')
+                print(serialized.errors)
             return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     return CreateObject
