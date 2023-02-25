@@ -5,7 +5,7 @@ import uuid
 
 # Create your models here.
 class User(models.Model):
-    transaction_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     password = models.CharField(max_length=20, blank=False, null=False)
     first_name = models.CharField(max_length=50,blank=False)
@@ -17,4 +17,4 @@ class User(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.transaction_id)
+        return str(self.id)
