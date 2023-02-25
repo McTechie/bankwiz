@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from bankwiz.server.utils.general_utils import exception_catcher
+from utils.general_utils import exception_catcher
 
 
 def collective_operations(model, serializer):
