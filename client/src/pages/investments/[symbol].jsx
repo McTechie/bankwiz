@@ -1,9 +1,12 @@
 import { useEffect, useRef } from 'react'
-
+import { useRouter } from 'next/router'
 let tvScriptLoadingPromise
 
 export default function TradingViewWidget() {
   const onLoadScriptRef = useRef()
+  const router = useRouter()
+  const stock = router.query.symbol
+  console.log(stock)
 
   useEffect(() => {
     onLoadScriptRef.current = createWidget
@@ -28,7 +31,7 @@ export default function TradingViewWidget() {
       if (document.getElementById('tradingview_d3fc7') && 'TradingView' in window) {
         new window.TradingView.widget({
           autosize: true,
-          symbol: 'NASDAQ:AAPL',
+          symbol: `NASDAQ:${stock}`,
           interval: 'D',
           timezone: 'Etc/UTC',
           theme: 'dark',
