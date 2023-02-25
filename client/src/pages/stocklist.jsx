@@ -34,8 +34,8 @@ const Bhargav = () => {
                     </tr>
                     </thead>
                     <tbody>
-                        {finalArr.map(stock=>(
-                            <tr className="">
+                        {finalArr.map((stock,index)=>(
+                            <tr key={index} className="">
                             <td class="px-4 py-3">APPL</td>
                             <td class="px-4 py-3">{stock.c}</td>
                             <td class="px-4 py-3">{stock.h}</td>
