@@ -8,13 +8,11 @@ from account_api.models import Account
 
 # Create your models here.
 class Transaction(models.Model):
-
-    transaction_id = models.UUIDField(default=uuid.uuid4, unique=True,
-                                primary_key=True, editable=False)
-    compid = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
-    id = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
-    bankid = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=False)
-    accountid = models.ForeignKey(Account, on_delete=models.CASCADE, blank=False)
+    transaction_id = models.AutoField(primary_key=True)
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+    bank_id = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=False)
+    account_id = models.ForeignKey(Account, on_delete=models.CASCADE, blank=False)
     amount = models.DecimalField(max_digits=99, decimal_places=2)
     transaction_status = models.CharField(max_length=20, unique=False)  # (Approved, Pending, Cancelled, Failed ...)
     transaction_type = models.CharField(max_length=20, unique=False)  # (NEFT, RTGS, ...)

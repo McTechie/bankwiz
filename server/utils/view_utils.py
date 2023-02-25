@@ -52,8 +52,10 @@ def creator(serializer):
                 - failure: Response (Rest Framework) containing an appropriate error message
             """
 
+            print(request.data)
             serialized = serializer(data=request.data)
-            serialized.save()
+            if serialized.is_valid():
+                serialized.save()
             return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     return CreateObject
@@ -97,7 +99,8 @@ def singular_operation(model, serializer):
 
             objects = model.objects.get(pk=id)
             serialized = serializer(objects, data=request.data)
-            serialized.save()
+            if serialized.is_valid():
+                serialized.save()
             return Response(serialized.data, status=status.HTTP_200_OK)
 
         @exception_catcher

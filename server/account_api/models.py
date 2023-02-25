@@ -6,18 +6,16 @@ from company_api.models import Company
 
 # Create your models here.
 class Account(models.Model):
-
-    accountid = models.UUIDField(default=uuid.uuid4, unique=True,
-                              primary_key=True, editable=False)
-    accountnum = models.CharField(max_length=20, unique=True)
-    accountname = models.CharField(max_length=200)
-    bankid = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=False)
-    compid = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
+    account_id = models.AutoField(primary_key=True)
+    account_number = models.CharField(max_length=20, unique=True)
+    account_name = models.CharField(max_length=200)
+    bank_id = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=False)
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
     branch = models.CharField(max_length=200, blank=False)
-    branchcode = models.CharField(max_length=30, blank=False)
+    branch_code = models.CharField(max_length=30, blank=False)
     purpose = models.CharField(max_length=50, blank=True, null=True)
-    accountbalance = models.DecimalField(max_digits=99, decimal_places=2)
-    creditlimit = models.DecimalField(max_digits=99, decimal_places=2)
+    account_balance = models.DecimalField(max_digits=99, decimal_places=2)
+    credit_limit = models.DecimalField(max_digits=99, decimal_places=2)
 
     def __str__(self):
         return str(self.accountid)
