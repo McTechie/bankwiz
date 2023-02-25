@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import serializers
 
 def exception_catcher(func):
     def runner(*args):
@@ -11,3 +12,13 @@ def exception_catcher(func):
             )
 
     return runner
+
+
+def serializer(_model):
+    class Serializer(serializers.ModelSerializer):
+        class Meta:
+            model = _model
+            fields = "__all__"
+
+    return Serializer
+

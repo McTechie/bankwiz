@@ -1,4 +1,3 @@
-from rest_framework import serializers
 import models
 
 class BankUserSerializer(serializers.ModelSerializer):
