@@ -12,7 +12,7 @@ class Company(models.Model):
     hqlocation = models.CharField(max_length=500, blank=True, null=True)
     pan = models.CharField(max_length=10, unique=True, blank=False)
     gstin = models.CharField(max_length=15, unique=True, blank=False)
-    hqpincode = models.IntegerField(max_length=6, blank=True, null=True)
+    hqpincode = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return str(self.compid)
@@ -22,7 +22,7 @@ class User(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                               primary_key=True, editable=False)
-    compid = models.ForeignKey(Company, blank=False)
+    compid = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
     password = models.CharField(max_length=20, blank=False, null=False)
     firstname = models.CharField(max_length=50,blank=False)
     lastname = models.CharField(max_length=50, blank=False)
@@ -44,7 +44,7 @@ class Bank(models.Model):
                               primary_key=True, editable=False)
     bankname = models.CharField(max_length=500, blank=False)
     hqlocation = models.CharField(max_length=500, blank=True, null=True)
-    hqpincode = models.IntegerField(max_length=6, blank=True, null=True)
+    hqpincode = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return str(self.bankid)
@@ -56,14 +56,14 @@ class Account(models.Model):
                               primary_key=True, editable=False)
     accountnum = models.CharField(max_length=20, unique=True)
     accountname = models.CharField(max_length=200)
-    bankid = models.ForeignKey(Bank, blank=False)
-    compid = models.ForeignKey(Company, blank=False)
+    bankid = models.ForeignKey(Bank, on_delete=models.CASCADE, blank=False)
+    compid = models.ForeignKey(Company, on_delete=models.CASCADE, blank=False)
     branch = models.CharField(max_length=200, blank=False)
     branchcode = models.CharField(max_length=30, blank=False)
     type = models.CharField(max_length=50, blank=True) # Corporate
     purpose = models.CharField(max_length=50, blank=True, null=True)
-    accountbalance = models.DecimalField()
-    creditlimit = models.DecimalField()
+    accountbalance = models.DecimalField(max_digits=99, decimal_places=2)
+    creditlimit = models.DecimalField(max_digits=99, decimal_places=2)
 
     def __str__(self):
         return str(self.accountid)
@@ -75,9 +75,9 @@ class Transaction(models.Model):
                                 primary_key=True, editable=False)
     transaction_status = models.CharField(max_length=20, unique=False)  # (Approved, Pending, Cancelled, Failed ...)
     transaction_type = models.CharField(max_length=20, unique=False)  # (NEFT, RTGS, ...)
-    from_account = models.ForeignKey(Account, blank=False)
-    to_account = models.ForeignKey(Account, blank=False)
-    amount = models.DecimalField()
+    from_account = models.ForeignKey(Account, on_delete=models.CASCADE, blank=False, related_name='fromaccount')
+    to_account = models.ForeignKey(Account, on_delete=models.CASCADE, blank=False, related_name='toaccount')
+    amount = models.DecimalField(max_digits=99, decimal_places=2)
     purpose = models.CharField(max_length=50, blank=True, null=True)
     timestamp = models.DateTimeField()
 
