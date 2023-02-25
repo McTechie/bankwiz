@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "sandbox_api",
-    "dashb",
     "company_api",
     "user_api",
     "bank_api",
