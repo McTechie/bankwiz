@@ -20,11 +20,6 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class BankUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Bank
-        fields = "__all__"
-
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
