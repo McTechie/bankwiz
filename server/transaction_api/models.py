@@ -1,9 +1,9 @@
 from django.db import models
 import uuid
-from bankwiz.server.company_api.models import Company
-from bankwiz.server.user_api.models import User
-from bankwiz.server.bank_api.models import Bank
-from bankwiz.server.account_api.models import Account
+from company_api.models import Company
+from user_api.models import User
+from bank_api.models import Bank
+from account_api.models import Account
 
 
 # Create your models here.
