@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MinusCircleIcon, PlusCircleIcon, PlusIcon } from '@heroicons/react/24/solid'
 
+import Link from 'next/link'
+import { useRouter } from 'next/router';
+import { PlusCircleIcon, PlusIcon } from '@heroicons/react/24/solid';
+
 const INVESTMENTS_TOKEN = 'cfsu97hr01qgkckhmgtgcfsu97hr01qgkckhmgu0'
 
 const Stocks = () => {
@@ -22,29 +26,29 @@ const Stocks = () => {
     ['AAPL', 'MSFT', 'TSLA', 'NFLX', 'GME'].forEach(fetchData)
   }, [])
 
-    const handleAddStockToWatchList = (e, stock) => {
-      e.stopPropagation()
-      
-      setWatchList(watchList => {
-        if (watchList.includes(stock)) {
-          return watchList
-        } else {
-          return [...watchList, stock]
-        }
-      })
+  const handleAddStockToWatchList = (e, stock) => {
+    e.stopPropagation()
 
-      localStorage.setItem('watchListInvestments', JSON.stringify([...watchList, stock]))
-    }
+    setWatchList(watchList => {
+      if (watchList.includes(stock)) {
+        return watchList
+      } else {
+        return [...watchList, stock]
+      }
+    })
 
-    const handleRemoveStockFromWatchList = (e, stock) => {
-      e.stopPropagation()
+    localStorage.setItem('watchListInvestments', JSON.stringify([...watchList, stock]))
+  }
 
-      const newWatchList = watchList.filter(item => item !== stock)
+  const handleRemoveStockFromWatchList = (e, stock) => {
+    e.stopPropagation()
 
-      setWatchList(newWatchList)
+    const newWatchList = watchList.filter(item => item !== stock)
 
-      localStorage.setItem('watchListInvestments', JSON.stringify(newWatchList))
-    }
+    setWatchList(newWatchList)
+
+    localStorage.setItem('watchListInvestments', JSON.stringify(newWatchList))
+  }
 
   useEffect(() => {
     const watchList = JSON.parse(localStorage.getItem('watchListInvestments'))

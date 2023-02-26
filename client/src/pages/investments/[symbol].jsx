@@ -141,6 +141,27 @@ export default function TradingViewWidget() {
 
   return (
     <div>
+      <div className='tradingview-widget-container flex '>
+        <div id='tradingview_d3fc7' className='h-96 w-2/3' />
+        <div className='mx-5 w-1/3' >
+          Name
+          <div className='text-3xl'>89,212</div>
+          <div className='flex justify-between  w-2/3'>
+            <div className='text-red-500'>Low - 23333</div>
+            <div className='text-green-600'>High - 5000</div>
+          </div>
+          <br />
+          <hr />
+          <div className="market-data mt-3">Market Cap</div>
+          <div className=''>$4,000,000,000</div>
+          <br />
+          <div className="revenue-growth-data mt-3">Revenue Growth</div>
+          <div className=''>8.9%</div>
+          <br />
+          <div className="revenue-growth mt-3">Operating Cashflow</div>
+          <div className=''>$73.22B</div>
+          <br />
+        </div>
     <div className='tradingview-widget-container flex '>
       <div id='tradingview_d3fc7' className='h-96 w-2/3' />
       <div className='mx-5 w-1/3' >
@@ -177,4 +198,3 @@ export default function TradingViewWidget() {
     </div>
   )
 }
- 

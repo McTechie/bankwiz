@@ -29,7 +29,7 @@ const Foreign = () => {
 
   const handleAddCurrencyToWatchList = (e, currency) => {
     e.stopPropagation()
-    
+
     setWatchList(watchList => {
       if (watchList.includes(currency)) {
         return watchList
