@@ -1,12 +1,10 @@
 import { useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 let tvScriptLoadingPromise
 
 export default function TradingViewWidget() {
   const onLoadScriptRef = useRef()
-  const router = useRouter()
-  const stock = router.query.symbol
-  console.log(stock)
+  const pathname = usePathname()
 
   useEffect(() => {
     onLoadScriptRef.current = createWidget
@@ -31,7 +29,7 @@ export default function TradingViewWidget() {
       if (document.getElementById('tradingview_d3fc7') && 'TradingView' in window) {
         new window.TradingView.widget({
           autosize: true,
-          symbol: `NASDAQ:${stock}`,
+          symbol: `NASDAQ:${pathname?.split('/investments/')[1].toUpperCase()}`,
           interval: 'D',
           timezone: 'Etc/UTC',
           theme: 'dark',
@@ -44,13 +42,55 @@ export default function TradingViewWidget() {
         })
       }
     }
-  }, [])
+  }, [pathname])
 
   return (
-    <div className='tradingview-widget-container'>
-      <div id='tradingview_d3fc7' className='h-96' />
-      <div className='tradingview-widget-copyright'>
-        <a href='https://www.tradingview.com/symbols/NASDAQ-AAPL/' rel='noopener' target='_blank'><span className='blue-text'>AAPL stock chart</span></a> by TradingView
+    <div>
+      <div className='tradingview-widget-container flex '>
+        <div id='tradingview_d3fc7' className='h-96 w-2/3' />
+        <div className='mx-5 w-1/3' >
+          Name
+          <div className='text-3xl'>89,212</div>
+          <div className='flex justify-between  w-2/3'>
+            <div className='text-red-500'>Low - 23333</div>
+            <div className='text-green-600'>High - 5000</div>
+          </div>
+          <br />
+          <hr />
+          <div className="market-data mt-3">Market Cap</div>
+          <div className=''>$4,000,000,000</div>
+          <br />
+          <div className="revenue-growth-data mt-3">Revenue Growth</div>
+          <div className=''>8.9%</div>
+          <br />
+          <div className="revenue-growth mt-3">Operating Cashflow</div>
+          <div className=''>$73.22B</div>
+          <br />
+        </div>
+
+      </div>
+
+      <div className='news-segment mt-5 ml-3 border-solid'>
+        <div className="text-3xl">News Segment</div>
+        <hr />
+        <div className='something'>
+          <div className="card border-2 w-full py-10">
+            <div className="text-xs">Publish Date</div>
+            <div className="title text-xl">Title</div>
+            <div className="description">Description</div>
+          </div>
+          <div className="card border-2 w-full py-10">
+            <div className="text-xs">Publish Date</div>
+            <div className="title text-xl">Title</div>
+            <div className="description">Description</div>
+          </div>
+          <div className="card border-2 w-full py-10">
+            <div className="text-xs">Publish Date</div>
+            <div className="title text-xl">Title</div>
+            <div className="description">Description</div>
+          </div>
+          <hr />
+        </div>
       </div>
     </div>
   )
