@@ -44,9 +44,9 @@ const DashboardLayout = ({ children }) => {
   }, [dispatch])
 
   return (
-    <div className={`${lato.variable} font-sans ${darkMode && 'dark'}`}>
+    <div className={`${lato.variable} font-sans ${true && 'dark'}`}>
       <Head>
-        <title>Loggsy | Dashboard</title>
+        <title>BankWiz | Dashboard</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 

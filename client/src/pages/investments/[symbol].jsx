@@ -1,12 +1,10 @@
 import { useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 let tvScriptLoadingPromise
 
 export default function TradingViewWidget() {
   const onLoadScriptRef = useRef()
-  const router = useRouter()
-  const stock = router.query.symbol
-  console.log(stock)
+  const pathname = usePathname()
 
   useEffect(() => {
     onLoadScriptRef.current = createWidget
@@ -31,7 +29,7 @@ export default function TradingViewWidget() {
       if (document.getElementById('tradingview_d3fc7') && 'TradingView' in window) {
         new window.TradingView.widget({
           autosize: true,
-          symbol: `NASDAQ:${stock}`,
+          symbol: `NASDAQ:${pathname?.split('/investments/')[1].toUpperCase()}`,
           interval: 'D',
           timezone: 'Etc/UTC',
           theme: 'dark',
@@ -44,7 +42,7 @@ export default function TradingViewWidget() {
         })
       }
     }
-  }, [])
+  }, [pathname])
 
   return (
     <div>
