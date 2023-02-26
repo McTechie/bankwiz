@@ -1,5 +1,7 @@
 import Image from "next/image"
-const Profile = () => {
+import CsvDownloadButton from 'react-json-to-csv'
+
+const Profile = ({ transactions }) => {
   const data = {
     id: '123',
     company_id: 'ABC',
@@ -54,8 +56,123 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
+      <section className='my-6 relative'>        
+        <div className='flex justify-center items-center'>
+          <div className='w-fit cta-btn'>
+            <CsvDownloadButton data={transactions} />
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
 
 export default Profile
+
+
+export const getServerSideProps = async () => {
+  // mock data
+  // const data = [
+  //   {
+  //     id: '1',
+  //     timestamp: 1672531200000,
+  //     severity: 1,
+  //     source: 'Server',
+  //     message: 'This is a log message',
+  //   },
+  //   {
+  //     id: '2',
+  //     timestamp: 1672531200000,
+  //     severity: 2,
+  //     source: 'Server',
+  //     message: 'This is a log message',
+  //   },
+  //   {
+  //     id: '3',
+  //     timestamp: 1672531200000,
+  //     severity: 5,
+  //     source: 'Client',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '4',
+  //     timestamp: 1672531200000,
+  //     severity: 4,
+  //     source: 'Server',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '5',
+  //     timestamp: 1672531200000,
+  //     severity: 3,
+  //     source: 'Service X',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '6',
+  //     timestamp: 1672531200000,
+  //     severity: 6,
+  //     source: 'Server',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '7',
+  //     timestamp: 1672531200000,
+  //     severity: 6,
+  //     source: 'DB Instace Y',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '8',
+  //     timestamp: 1672531200000,
+  //     severity: 4,
+  //     source: 'Server',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '9',
+  //     timestamp: 1672531200000,
+  //     severity: 3,
+  //     source: 'Service X',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '10',
+  //     timestamp: 1672531200000,
+  //     severity: 6,
+  //     source: 'Server',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '11',
+  //     timestamp: 1672531200000,
+  //     severity: 6,
+  //     source: 'DB Instace Y',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  //   {
+  //     id: '12',
+  //     timestamp: 1672531200000,
+  //     severity: 4,
+  //     source: 'Server',
+  //     message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+  //   },
+  // ]
+  
+  const res = await fetch(`http://localhost:8000/api/aggregate/relevant_fields/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ user_id: 21 }),
+  })
+
+  const data = await res.json()
+
+  return {
+    props: {
+      data,
+    },
+  }
+}
