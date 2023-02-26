@@ -42,7 +42,7 @@ export default function TradingViewWidget() {
         })
       }
     }
-  }, [])
+  }, [pathname])
 
   return (
     <div>
