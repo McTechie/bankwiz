@@ -1,6 +1,6 @@
 // named imports
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { MinusCircleIcon, PlusCircleIcon, PlusIcon } from '@heroicons/react/24/solid'
 
 // default import
@@ -9,6 +9,8 @@ import Link from 'next/link'
 const INVESTMENTS_TOKEN = 'cfsu97hr01qgkckhmgtgcfsu97hr01qgkckhmgu0'
 
 const Stocks = () => {
+  const router = useRouter()
+
   const [finalArr, setFinalArr] = useState([])
   const [watchList, setWatchList] = useState([])
 
@@ -117,6 +119,7 @@ const Stocks = () => {
               {watchList.length > 0 ? watchList.map(stock => (
                 <tr
                   key={stock}
+                  onClick={() => router.push(`/investments/${stock}`)}
                   className='hover:bg-sky-400 cursor-pointer grid grid-cols-12 py-2 border-b-2 border-sky-400 group'
                 >
                   <td className='col-span-10'>{stock}</td>
