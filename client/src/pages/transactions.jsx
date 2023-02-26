@@ -1,43 +1,112 @@
-import { bankStatements } from "../../data"
-const Transactions = () => {
-  console.log(bankStatements)
+// named imports
+import { Listing } from '../components'
+
+const ListingPage = ({ data }) => {
   return (
-    <div>
-      <h1 className='text-3xl font-bold mb-6'>Account Statements</h1>
-      <div className='mx-20'>
-        {
-          bankStatements.length > 0 &&
-          <section className=''>
-            <table className='flex flex-col border p-6 border-sky-400 text-center h-[40rem]'>
-              <thead className='rounded-lg text-lg text-center'>
-                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Date</th>
-                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Amount</th>
-                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Purpose</th>
-                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Via</th>
-                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Status</th>
-                <th className='px-12 py-4 title-font font-medium text-gray-900 text-lg bg-gray-400'>Payee</th>
-              </thead>
-              <tbody className='flex-1 overflow-y-scroll'>
-                {bankStatements.map((statement, index) => (
-                  <tr className='hover:bg-sky-400' key={statement.transaction_id}>
-                    <td className='px-8 text-lg'>
-                      <p className='font-semibold'>{statement.transaction_date}</p>
-                      <p className='text-sm text-center'>{statement.transaction_time_stamp}</p>
-                    </td>
-                    <td className='px-6'>{statement.transaction_amount}</td>
-                    <td className='px-6'>{statement.transaction_purpose}</td>
-                    <td className='px-6'>{statement.transaction_type}</td>
-                    <td className='px-6'>{statement.transaction_status}</td>
-                    <td className='px-6'>{statement.transaction_with}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        }
-      </div>
+    <div className='max-w-screen-xl mx-auto'>
+      <Listing transactions={data} />
     </div>
   )
 }
 
-export default Transactions
+export default ListingPage
+
+export const getServerSideProps = async () => {
+  // mock data
+  const data = [
+    {
+      id: '1',
+      timestamp: 1672531200000,
+      severity: 1,
+      source: 'Server',
+      message: 'This is a log message',
+    },
+    {
+      id: '2',
+      timestamp: 1672531200000,
+      severity: 2,
+      source: 'Server',
+      message: 'This is a log message',
+    },
+    {
+      id: '3',
+      timestamp: 1672531200000,
+      severity: 5,
+      source: 'Client',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '4',
+      timestamp: 1672531200000,
+      severity: 4,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '5',
+      timestamp: 1672531200000,
+      severity: 3,
+      source: 'Service X',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '6',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '7',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'DB Instace Y',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '8',
+      timestamp: 1672531200000,
+      severity: 4,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '9',
+      timestamp: 1672531200000,
+      severity: 3,
+      source: 'Service X',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '10',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '11',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'DB Instace Y',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '12',
+      timestamp: 1672531200000,
+      severity: 4,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+  ]
+  
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logs`)
+
+  // const logs = await res.json()
+
+  return {
+    props: {
+      data,
+    },
+  }
+}

@@ -3,9 +3,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MinusCircleIcon, PlusCircleIcon, PlusIcon } from '@heroicons/react/24/solid'
 
-// default import
-import Link from 'next/link'
-
 const INVESTMENTS_TOKEN = 'cfsu97hr01qgkckhmgtgcfsu97hr01qgkckhmgu0'
 
 const Stocks = () => {

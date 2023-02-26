@@ -3,9 +3,9 @@ import { usePathname } from 'next/navigation'
 import {
   ArrowRightOnRectangleIcon,
   BanknotesIcon,
-  BuildingLibraryIcon,
   CreditCardIcon,
   CurrencyEuroIcon,
+  GlobeAmericasIcon,
   PresentationChartLineIcon,
   UserIcon
 } from '@heroicons/react/20/solid'
@@ -25,6 +25,11 @@ const links = [
     icon: <CreditCardIcon />
   },
   {
+    title: 'Geo Locations',
+    href: '/geolocation',
+    icon: <GlobeAmericasIcon />
+  },
+  {
     title: 'Foreign Exchange',
     href: '/fx',
     icon: <CurrencyEuroIcon />
@@ -33,11 +38,6 @@ const links = [
     title: 'Investments',
     href: '/investments',
     icon: <BanknotesIcon />
-  },
-  {
-    title: 'Organization',
-    href: '/organization',
-    icon: <BuildingLibraryIcon />
   },
   {
     title: 'My Profile',
