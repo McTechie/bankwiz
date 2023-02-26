@@ -35,7 +35,7 @@ class UserTransactions(APIView):
 
 class GetRelevantDetails(APIView):
     @exception_catcher
-    def get(self, request):
+    def post(self, request):
         return_list = []
         banks = []
         user_id = request.data['user_id']
