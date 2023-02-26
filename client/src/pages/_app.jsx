@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         <DashboardLayout>
           <Component {...pageProps} />
         </DashboardLayout>
-      )} 
+      )}
     </Provider>
   )
 }

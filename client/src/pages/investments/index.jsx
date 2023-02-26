@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MinusCircleIcon, PlusCircleIcon, PlusIcon } from '@heroicons/react/24/solid'
 
-// default import
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { PlusCircleIcon, PlusIcon } from '@heroicons/react/24/solid';

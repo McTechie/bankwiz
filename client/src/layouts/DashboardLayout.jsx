@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 // default imports
 import Head from 'next/head'
 import { ChatBubbleBottomCenterIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/solid'
+import Script from 'next/script'
 
 // font style for the dashboard
 const lato = Lato({
@@ -53,6 +54,8 @@ const DashboardLayout = ({ children }) => {
         <title>BankWiz | Dashboard</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <Script type='module' src='https://10az.online.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js'></Script>
 
       <div className='grid grid-cols-12'>
         {/* left section */}
