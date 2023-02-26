@@ -10,8 +10,6 @@ const Foreign = () => {
   var today = new Date();
   var time = today.getHours() + ':' + today.getMinutes()
 
-  const selectedCurrencies = useMemo(() => Object.keys(conversionRates).filter(currency => ['AED', 'USD'].includes(currency)))
-
   const allCurrenciesArr = Object.keys(conversionRates)
   const popularCurrencies = useMemo(() => Object.keys(conversionRates).filter(currency => ['USD', 'INR', 'EUR', 'AED'].includes(currency)))
 
